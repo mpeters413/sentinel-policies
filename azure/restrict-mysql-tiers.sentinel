@@ -1,0 +1,33 @@
+# MYSQL Policy to restrict tiers
+
+import "tfplan"
+
+
+# Get all mysql dbs from all modules
+get_mysql_dbs = func() {
+    dbs = []
+    for tfplan.module_paths as path {
+        dbs += values(tfplan.module(path).resources.azurerm_mysql_server) else []
+    }
+    return dbs
+}
+
+#Allowed tier size 
+allowed_mysql_database_tiers = ["Basic"]
+
+
+mysql_dbs = get_mysql_dbs()
+
+# Rule to restrict tier size
+
+tier_size_allowed = rule {
+    all mysql_dbs as _, dbs {
+      all dbs as index, r {
+  	   r.applied.tier in allowed_mysql_database_tiers
+      }
+    }
+}
+
+main = rule { 
+	(tier_size_allowed) else true
+}
