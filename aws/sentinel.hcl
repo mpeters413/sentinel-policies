@@ -9,3 +9,8 @@ policy "restrict-ec2-zones" {
 policy "enforce-mandatory-tags" {
     enforcement_level = "hard-mandatory"
 }
+
+policy "restrict-aws-instance-type" {
+    enforcement_level = "hard-mandatory"
+}
+
