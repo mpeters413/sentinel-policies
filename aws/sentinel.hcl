@@ -1,5 +1,5 @@
 policy "restrict-db-instance-engines" {
- #   enforcement_level = "hard-mandatory"
+    enforcement_level = "hard-mandatory"
 }
 
 policy "restrict-ec2-zones" {
