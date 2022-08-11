@@ -102,7 +102,6 @@ validate_engines = func(allowed_engines) {
 ##### Lists #####
 # Allowed RDS DB Engines
 allowed_engines = [
-  " ",
   "mysql",
   "oracle-se1",
   "oracle-se2",
